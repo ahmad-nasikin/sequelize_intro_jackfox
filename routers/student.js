@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
   if (!result) {
     model.Student.create({ first_name : req.body.first_name, last_name : req.body.last_name, email : req.body.email})
     .then(() => {
-      res.redirect('/teacher')
+      res.redirect('/student')
     })
     .catch(err => {
       res.render('addStudent', {errmsg: err.message});
@@ -78,6 +78,36 @@ router.get('/delete/:id', (req, res) => {
   })
   .then(data => {
     res.redirect('/student')
+  })
+})
+
+
+router.get('/:id/addSubject', (req, res) => {
+  model.Student.findById(req.params.id)
+  .then((rows) => {
+    model.Subject.findAll()
+    .then((rows_subject) => {
+      res.render('addStudentSubject', {
+        data: rows, data2: rows_subject
+      })
+    })
+  })
+})
+
+router.post('/:id/addSubject', (req, res) => {
+  model.StudentSubject.create({
+    StudentId: req.params.id,
+    SubjectId: req.body.selectSubject
+  }, {
+    where : {
+      id:req.params.id
+    }
+  })
+  .then(() => {
+    res.redirect('/student')
+  })
+  .catch(err => {
+    console.log(err);
   })
 })
 

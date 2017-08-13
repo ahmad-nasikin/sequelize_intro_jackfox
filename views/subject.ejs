@@ -3,20 +3,23 @@
 
 <head>
   <meta charset="utf-8">
-  <%- include partial/header %>
+  <!-- <%- include partial/header %> -->
     <title>Ini Subject</title>
 </head>
 
 <body>
+  <center>
   <h1>Data Subject</h1>
   <a href="/subject/add"><button type="button" name="button">Add Subject</button></a>
   <div>
+    <center>
     <table>
       <tr>
         <th>Id</th>
         <th>Subject</th>
         <th>Teachers</th>
-        <th>Opstions</th>
+        <th>Action</th>
+        <!-- <th>Options</th> -->
       </tr>
       <% dataSubject.forEach(subject => {%>
         <tr>
@@ -40,13 +43,14 @@
                 <center> - </center>
               </td>
               <% } %>
-                <td>
+              <td><a href="/subject/<%= subject.id%>/enrolledstudents">Enrolled Student</a></td>
+                <!-- <td>
                   <a href='subject/<%= subject.id %>/addSubject'>Add Subject</a>
                 </td>
                 <td>
                   <a href="/subject/edit/<%= subject.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Edit</button></a>
                   <a href="subject/delete/<%= subject.id %>" onclick="return confirm('Delete <%= subject.subject_name %> From List?')"><button type="button" class="btn btn-primary btn-sm" name="button">Delete</button></a>
-                </td>
+                </td> -->
         </tr>
         <% }) %>
     </table>

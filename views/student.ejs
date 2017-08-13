@@ -29,7 +29,7 @@
               <%= student.email %>
             </td>
             <td><a href="/student/edit/<%= student.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Edit</button></a>
-            <a href="student/delete/<%= student.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Delete</button></a>
+            <a href="student/delete/<%= student.id %>" onclick="return confirm('Delete <%= student.first_name %> <%= student.last_name %> From List?')"><button type="button" class="btn btn-primary btn-sm" name="button">Delete</button></a>
             </td>
           </tr>
         <% }) %>

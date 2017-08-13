@@ -4,7 +4,10 @@ const router = express.Router()
 const model = require('../models');
 
 router.get('/', (req, res) => {
-  model.Teacher.findAll()
+  model.Teacher.findAll({
+    order:[['first_name', 'ASC']],
+    include: [model.Subject]
+  })
   .then(data => {
     res.render('teacher', {
       dataTeacher: data
@@ -38,24 +41,23 @@ router.post('/', (req, res) => {
 })
 
 router.get('/edit/:id', (req, res) => {
-  model.Teacher.findOne({
-    where: {
-      id: req.params.id
-    }
-  })
+  model.Teacher.findById(req.params.id, {include: [model.Subject]})
   .then(data => {
-    res.render('editTeacher', {
-      data: data}
-    )
+    console.log(data);
+    model.Subject.findAll()
+    .then(allData => {
+      console.log(allData);
+      res.render('editTeacher', {
+        data: data, data2: allData
+      })
+    })
   })
-  .catch(() => {
-    console.log(err);
-  })
- })
+})
+
 
 router.post('/edit/:id', (req, res) => {
   model.Teacher.update({
-    first_name: req.body.first_name, last_name: req.body.last_name, email : req.body.email}, {
+    first_name: req.body.first_name, last_name: req.body.last_name, email : req.body.email, SubjectId : req.body.subject}, {
     where : {
       id:req.params.id
     }

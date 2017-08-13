@@ -18,6 +18,20 @@
         <input type="text" name="last_name" value="<%= data.last_name %>" />
         <label><b>Email</b></label>
         <input type="text" name="email" value="<%= data.email %>" />
+        <label><b>Subject</b></label>
+            <select name="subject">
+              <% if(data.SubjectId == null) { %>
+                <option value="">Unassigned</option>
+                <% data2.forEach((data_subject) => { %>
+                <option value="<%= data_subject.id %>"><%= data_subject.id %> <%= data_subject.subject_name %></option>
+                <% }) %>
+              <%} else {%>
+                <option  value="<%= data.SubjectId %>" selected="<%= data.SubjectId %>"><%=data.Subject.subject_name %></option>
+                <% data2.forEach(data_subject => { %>
+                  <option value="<%= data_subject.id %>"><%= data_subject.subject_name %></option>
+                <% }) %>
+              <% } %>
+            </select>
         <div>
           <button>Cancel</button>
           <button type="submit">Save</button>

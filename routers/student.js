@@ -26,13 +26,13 @@ router.post('/', (req, res) => {
   if (!result) {
     model.Student.create({ first_name : req.body.first_name, last_name : req.body.last_name, email : req.body.email})
     .then(() => {
-      res.redirect('/student')
+      res.redirect('/teacher')
     })
     .catch(err => {
-      res.render('/addStudent', {errmsg: err.message});
+      res.render('addStudent', {errmsg: err.message});
     })
   } else {
-    res.render('addStudent', {errmsg: ' Sudah Terdaftar'});
+    res.render('addStudent', {errmsg: 'Email Sudah Terdaftar'});
   }
   })
 })

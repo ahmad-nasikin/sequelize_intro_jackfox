@@ -12,25 +12,24 @@ router.get('/', (req, res) => {
   })
 })
 
-
 router.get('/add', (req, res) => {
   res.render('addTeacher', {errmsg: ''})
 })
 
 router.post('/', (req, res) => {
-  model.Student.findOne({
+  model.Teacher.findOne({
       where:{
       email: req.body.email
       }
   })
   .then((result) => {
   if (!result) {
-    model.Student.create({ first_name : req.body.first_name, last_name : req.body.last_name, email : req.body.email})
+    model.Teacher.create({ first_name : req.body.first_name, last_name : req.body.last_name, email : req.body.email})
     .then(() => {
       res.redirect('/teacher')
     })
     .catch(err => {
-      res.render('/addTeacher', {errmsg: err.message});
+      res.render('addTeacher', {errmsg: err.message});
     })
   } else {
     res.render('addTeacher', {errmsg: ' Sudah Terdaftar'});

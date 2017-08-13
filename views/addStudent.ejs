@@ -6,6 +6,9 @@
     <%- include partial/header %>
   </head>
   <body>
+    <% if(errmsg != '') { %>
+      <span><%= errmsg %></span>
+    <% } %>
     <form action="/student" method="post">
       <div class="form-group">
         <div class="container-fluid">
@@ -13,10 +16,7 @@
           <input type="text" class="form-control" name="first_name" placeholder="Input Your Name">
           <label><b>Last Name</b></label>
           <input type="text" class="form-control" name="last_name" placeholder="Input Your Name">
-        <label><b>Email
-        <% if(errmsg != '') { %>
-          <span><%= errmsg %></span>
-        <% } %></b></label>
+        <label><b>Email</b></label>
         <input type="text" class="form-control" name="email" placeholder="Input Your Email">
         <button type="submit" class="form-control" name="button">Add</button>
       </div>

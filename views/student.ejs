@@ -7,13 +7,15 @@
   </head>
   <body>
     <h1>Student Data</h1>
-
+    <a href="/student/add"><button type="button" name="button">Add Student</button></a>
+    <br>
     <div>
       <table>
         <tr>
           <th>Id</th>
           <th>Nama</th>
           <th>Email</th>
+          <th>Options</th>
         </tr>
           <% dataStudent.forEach(student => { %>
           <tr>
@@ -25,6 +27,9 @@
             </td>
             <td>
               <%= student.email %>
+            </td>
+            <td><a href="/student/edit/<%= student.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Edit</button></a>
+            <a href="student/delete/<%= student.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Delete</button></a>
             </td>
           </tr>
         <% }) %>

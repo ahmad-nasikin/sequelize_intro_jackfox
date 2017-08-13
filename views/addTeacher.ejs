@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Teacher</title>
+    <%- include partial/header %>
+  </head>
+  <body>
+    <form action="/teacher" method="post">
+      <div class="form-group">
+        <div class="container-fluid">
+        <label><b>First Name</b></label>
+        <input type="text" class="form-control" name="first_name" placeholder="Input Your Name">
+        <label><b>Last Name</b></label>
+        <input type="text" class="form-control" name="last_name" placeholder="Input Your Name">
+        <label><b>Email</b></label>
+        <input type="text" class="form-control" name="email" placeholder="Input Your Email">
+        <button type="submit" class="form-control" name="button">Add</button>
+      </div>
+      </div>
+    </form>
+      <a class="btn btn-default" href="/" role="button">Home</a>
+  </body>
+</html>

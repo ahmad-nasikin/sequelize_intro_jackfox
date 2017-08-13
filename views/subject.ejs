@@ -6,13 +6,14 @@
     <title>Ini Subject</title>
   </head>
   <body>
-    <h1>Subject dataSubject</h1>
-
+    <h1>Data Subject</h1>
+    <a href="/subject/add"><button type="button" name="button">Add Subject</button></a>
     <div>
       <table>
         <tr>
           <th>Id</th>
           <th>Subject</th>
+          <th>Opstions</th>
         </tr>
         <% dataSubject.forEach(subject => {%>
           <tr>
@@ -21,6 +22,9 @@
             </td>
             <td>
               <%= subject.subject_name %>
+            </td>
+            <td><a href="/subject/edit/<%= subject.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Edit</button></a>
+            <a href="subject/delete/<%= subject.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Delete</button></a>
             </td>
           </tr>
         <% }) %>

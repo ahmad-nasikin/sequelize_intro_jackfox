@@ -69,7 +69,23 @@ router.get('/delete/:id', (req, res) => {
     }
   })
   .then(data => {
-    res.redirect('/subject')
+    model.StudentSubject.destroy({
+      where: {
+        SubjectId: req.params.id
+      }
+    })
+    .then(datas => {
+      model.Teacher.update({
+        SubjectId: null
+      }, {
+        where: {
+          SubjectId: req.params.id
+        }
+      })
+      .then(gg => {
+        res.redirect('/subject')
+      })
+    })
   })
 })
 
@@ -78,29 +94,29 @@ router.get('/:id/enrolledstudents', function (req, res) {
     where: {
       SubjectId: req.params.id
     },
-    include: [{all:true}],
-    order: [['Student', 'first_name', 'ASC']],
+    include: [{all:true}]
   })
   .then(data => {
     console.log(data);
+    // res.send(data);
     res.render('subject-enrolledstudents', {dataSubject: data});
   })
 })
 
 router.get('/:id/:ids/givescore', function (req, res) {
-   model.Student.findAll({
+   model.Subject.findAll({
      where: {
-       id: req.params.id
+       id: req.params.ids
      }
    })
-   .then(datasiswa => {
-     model.Subject.findAll({
+   .then(datasubject => {
+     model.Student.findAll({
        where: {
-         id: req.params.ids
+         id: req.params.id
        }
      })
-     .then(datasubject => {
-       res.render('subject-givescore', {data: datasiswa, dataSubject: datasubject})
+     .then(datastudent => {
+       res.render('subject-givescore', {data: datastudent, dataSubject: datasubject})
      })
    })
  })

@@ -6,20 +6,20 @@
     <title>Subject</title>
   </head>
   <body>
-    <h1>Data Mata Pelajaran <%= dataSubject[0].Subject.subject_name %></h1>
+    <h1>Data Subject <%= dataSubject[0].Subject.subject_name %></h1>
     <div>
       <table>
         <tr>
           <th>No</th>
-          <th>Nama Murid</th>
-          <th>Nilai</th>
+          <th>Student Name</th>
+          <th>Score</th>
         </tr>
         <%var no = 1; for(var i = 0 ; i < dataSubject.length; i++) {%>
             <tr>
               <td><%= no %><% no += 1 %></td>
               <td><%= dataSubject[i].Student.first_name %> <%= dataSubject[i].Student.last_name %></td>
               <% if(dataSubject[i].score == null) { %>
-                <td><a href="/subject/<%= dataSubject[i].StudentId %>/<%= dataSubject[i].SubjectId %>/givescore"> Kasih Nilai</a></td>
+                <td><a href="/subject/<%= dataSubject[i].StudentId %>/<%= dataSubject[i].SubjectId %>/givescore"> Give Score</a></td>
               <% } else { %>
                 <td><%= dataSubject[i].score%></td>
               <%}%>

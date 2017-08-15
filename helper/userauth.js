@@ -2,15 +2,15 @@ module.exports = {
   userRole(role) {
     let menuDashboard = [];
     switch (role) {
-      case "headmaster":
+      case "Headmaster":
         menuDashboard = ['daskboard', 'student', 'subject', 'teacher']
         return menuDashboard
         break;
-      case "teacher":
+      case "Teacher":
         menuDashboard = ['daskboard', 'student']
         return menuDashboard
         break;
-      case "academic":
+      case "Academic":
         menuDashboard = ['daskboard', 'student', 'subject']
         return menuDashboard
         break;

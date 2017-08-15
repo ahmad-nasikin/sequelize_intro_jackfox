@@ -7,13 +7,15 @@
   </head>
   <body>
     <h1>Teachers Data</h1>
-
+    <a href="/teacher/add"><button type="button" name="button">Add Teacher</button></a>
     <div>
       <table>
         <tr>
           <th>Id</th>
           <th>Nama</th>
           <th>Email</th>
+          <th>Subject</th>
+          <th>Options</th>
         </tr>
           <% dataTeacher.forEach(teacher => { %>
           <tr>
@@ -25,6 +27,14 @@
             </td>
             <td>
               <%= teacher.email %>
+            </td>
+            <% if (teacher.SubjectId == null) { %>
+              <td> Unassigned </td>
+            <%} else {%>
+              <td><%= teacher.Subject.subject_name %></td>
+            <% } %>
+            <td><a href="/teacher/edit/<%= teacher.id %>"><button type="button" class="btn btn-primary btn-sm" name="button">Edit</button></a>
+            <a href="teacher/delete/<%= teacher.id %>" onclick="return confirm('Delete <%= teacher.first_name %> <%= teacher.last_name %> From List?')"><button type="button" class="btn btn-primary btn-sm" name="button">Delete</button></a>
             </td>
           </tr>
         <% }) %>

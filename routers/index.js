@@ -3,8 +3,19 @@ const router = express.Router()
 
 const Index = require('../models');
 
-router.get('/', function (req, res) {
-  res.render('index')
+router.get('/', (req, res, next) => {
+  let userSession = req.session.user
+  if(userSession) {
+    res.render('index', {userSession: userSession, pageTitle: 'Index Page'})
+  } else {
+    res.redirect('/login')
+  }
 })
 
-module.exports = router
+router.get('/logout', (req, res, next) => {
+  req.session.destroy();
+  res.redirect('/')
+})
+
+
+module.exports = router;

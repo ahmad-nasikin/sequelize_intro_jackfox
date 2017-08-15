@@ -22,6 +22,7 @@ router.post('/', (req, res, next) => {
         username: username,
         role: user.role
       }
+      console.log('======', user);
       res.redirect('/daskboard')
     } else {
       res.send('Wrong Password')
